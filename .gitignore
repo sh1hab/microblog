@@ -2,3 +2,4 @@ __pycache__
 app/__pychache__
 /venv
 .flaskenv
+.idea
