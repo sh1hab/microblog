@@ -1,5 +1,5 @@
 __pycache__
-app/__pychache__
+myapp/__pychache__
 /venv
 .flaskenv
 .idea
