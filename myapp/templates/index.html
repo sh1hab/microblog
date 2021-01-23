@@ -5,4 +5,8 @@
     {% for post in posts %}
         <div><p>{{ post.author.username }}</p></div>
     {% endfor %}
+
+    {% for user in users %}
+        <div><p>username: {{ user.username }} -- email: {{ user.email }}</p></div>
+    {% endfor %}
 {% endblock %}

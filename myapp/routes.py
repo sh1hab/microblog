@@ -1,9 +1,10 @@
+from myapp import db
 from myapp import application
-from flask import render_template, flash, redirect, url_for, request
-from myapp.forms import LoginForm
-from flask_login import current_user, login_user, logout_user, login_required
+from myapp.forms import LoginForm, RegistrationForm
 from myapp.models import User
 from werkzeug.urls import url_parse
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import current_user, login_user, logout_user, login_required
 
 
 # decorator
@@ -27,6 +28,21 @@ def login():  # view function
     return render_template('login.html', title='sign in', form=form)
 
 
+@application.route('/register', methods=['GET', 'POST'])
+def registration():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='register', form=form)
+
+
 @application.route('/logout', methods=['GET'])
 def logout():
     if current_user.is_authenticated:
@@ -42,6 +58,7 @@ def logout():
 @login_required
 def index():
     user = {'username': 'shihab'}
+    users = User.query.all()
     posts = [
         {
             'author': {'username': 'john'},
@@ -52,4 +69,4 @@ def index():
             'body': 'beautiful day in doeland!'
         },
     ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
+    return render_template('index.html', title='Home', users=users, posts=posts)
