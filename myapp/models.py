@@ -1,8 +1,9 @@
 from myapp import db
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import UserMixin
 from myapp import login
+from hashlib import md5
+from flask_login import UserMixin
 
 
 class User(UserMixin, db.Model):
@@ -15,16 +16,28 @@ class User(UserMixin, db.Model):
     # 3rd arg lazy argument defines how the database query for the relationship will be issued
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     userDetails = db.relationship('UserDetails', backref='author', lazy='dynamic')
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow())
 
     # debugging purpose
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+    # validation
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    # validation
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def avatar(self, size):
+        # print(self.email, self.username)
+        if self.email is not None:
+            digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+            return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
+        else:
+            return 'https://www.gravatar.com/avatar'
 
 
 class Post(db.Model):
