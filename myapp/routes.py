@@ -1,6 +1,6 @@
 from myapp import db
 from myapp import application
-from myapp.forms import LoginForm, RegistrationForm
+from myapp.forms import LoginForm, RegistrationForm, EmptyForm
 from myapp.models import User
 from werkzeug.urls import url_parse
 from flask import render_template, flash, redirect, url_for, request
@@ -66,7 +66,7 @@ def logout():
 @application.route('/indexpage')  # default method GET
 @login_required
 def index():
-    user = {'username': 'shihab'}
+    # user = {'username': 'shihab'}
     users = User.query.all()
     posts = [
         {
@@ -75,7 +75,7 @@ def index():
         },
         {
             'author': {'username': 'doe'},
-            'body': 'beautiful day in doeland!'
+            'body': 'beautiful day in doeLand!'
         },
     ]
     return render_template('index.html', title='Home', users=users, posts=posts)
@@ -89,7 +89,8 @@ def user(username):
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
     ]
-    return render_template('user.html', user=user, posts=posts)
+    form = EmptyForm()
+    return render_template('user.html', user=user, posts=posts, form=form)
 
 
 @application.route('/edit_profile', methods=['GET', 'POST'])
@@ -106,3 +107,28 @@ def edit_profile():
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='edit profile', form=form)
+
+
+@application.route('/follow/<username>', methods=['POST'])
+@login_required
+def follow(username):
+    form = EmptyForm()
+    if form.validate_on_submit():
+        searched_user = User.query.filter_by(username=username).first()
+        if searched_user is None:
+            flash('User {} not found.'.format(username))
+            return redirect(url_for('index'))
+        elif searched_user != current_user:
+            if not current_user.is_following(searched_user):
+                current_user.follow(searched_user)
+                flash('You are following {}!'.format(username))
+            else:
+                current_user.unfollow(searched_user)
+                flash('You are not following {}!'.format(username))
+            db.session.commit()
+        else:
+            flash('You cannot follow yourself!')
+        return redirect(url_for('user', username=username))
+    else:
+        return redirect(url_for('index'))
+

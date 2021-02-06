@@ -178,3 +178,14 @@ Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
     return type.__call__(cls, *args, **kwargs)
 TypeError: __init__() missing 1 required positional argument: 'original_username'
+2021-02-06 16:28:33,393 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:29:29,376 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:34:43,069 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:35:48,266 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:36:12,005 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:42:43,506 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:43:16,050 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:43:33,774 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:44:04,964 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:45:26,590 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-06 16:52:31,802 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]

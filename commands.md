@@ -5,3 +5,7 @@ pip install python-dotenv
 pip install flask-wtf
 
 pip freeze > requirements.txt
+
+flask db migrate
+
+flask db upgrade
