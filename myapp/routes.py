@@ -1,12 +1,13 @@
-from myapp import db
-from myapp import application
-from myapp.forms import LoginForm, RegistrationForm, EmptyForm
-from myapp.models import User
-from werkzeug.urls import url_parse
+from datetime import datetime
+
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from datetime import datetime
-from myapp.forms import EditProfileForm
+from werkzeug.urls import url_parse
+
+from myapp import application
+from myapp import db
+from myapp.forms import LoginForm, RegistrationForm, EmptyForm, EditProfileForm, PostForm
+from myapp.models import User, Post
 
 
 @application.before_request
@@ -62,23 +63,39 @@ def logout():
         return redirect(url_for('index'))
 
 
-@application.route('/')
-@application.route('/indexpage')  # default method GET
+@application.route('/', methods=['GET', 'POST'])
+@application.route('/index', methods=['GET', 'POST'])  # default method GET
 @login_required
 def index():
     # user = {'username': 'shihab'}
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live')
+        return redirect(url_for('index'))
     users = User.query.all()
-    posts = [
-        {
-            'author': {'username': 'john'},
-            'body': 'beautiful day in portland!'
-        },
-        {
-            'author': {'username': 'doe'},
-            'body': 'beautiful day in doeLand!'
-        },
-    ]
-    return render_template('index.html', title='Home', users=users, posts=posts)
+    # posts = [
+    #     {
+    #         'author': {'username': 'john'},
+    #         'body': 'beautiful day in portland!'
+    #     },
+    #     {
+    #         'author': {'username': 'doe'},
+    #         'body': 'beautiful day in doeLand!'
+    #     },
+    # ]
+    page = request.args.get('page', 1, type=int)
+    # posts = current_user.followed_posts().all()
+    posts = current_user.followed_posts().paginate(page, application.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('index', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('index', page=posts.prev_num) \
+        if posts.has_prev else None
+
+    return render_template('index.html', title='Home', users=users, posts=posts.items, form=form, next_url=next_url,
+                           prev_url=prev_url)
 
 
 @application.route('/user/<username>')
@@ -132,3 +149,14 @@ def follow(username):
     else:
         return redirect(url_for('index'))
 
+
+@application.route('/explore')
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(page, application.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('explore', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('explore', page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('index.html', title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)

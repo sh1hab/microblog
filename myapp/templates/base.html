@@ -1,34 +1,40 @@
 {#base template#}
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Microblog</title>
-        {% else %}
-            <title>Welcome to Microblog</title>
-        {% endif %}
-    </head>
-    <body>
-    <div>
-        Microblog:
-        <a href="{{ url_for('index') }}">Home</a>
-        {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-        {% else %}
-            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-        {% endif %}
-    </div>
-    <hr>
-    {#   flashed messages show  here. on reload vanishes  #}
-    {% with messages = get_flashed_messages() %} {# with - auto close/clears  #}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+    {% if title %}
+        <title>{{ title }} - MicroBlog</title>
+    {% else %}
+        <title>Welcome to MicroBlog</title>
+    {% endif %}
+</head>
+
+<body>
+
+<div>
+    MicroBlog:
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+    {% else %}
+        <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+         <a href="{{ url_for('explore') }}">Explore</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+</div>
+
+<hr>
+{#  Flashed messages show here. On reload vanishes  #}
+{% with messages = get_flashed_messages() %} {# with - auto close/clears  #}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+</body>
 </html>

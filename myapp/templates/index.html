@@ -2,13 +2,38 @@
 
 {% block content %}
     <h1>hi, {{ current_user.username }}!</h1>
+
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}
+            {{ form.post(cols=32, rows=4) }}<br>
+            {% for error in form.post.erros %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+
     {% for post in posts %}
-        <div><p>{{ post.author.username }}</p></div>
+{#        <div><p>{{ post.author.username }}</p></div>#}
+        {% include '_post.html' %}
     {% endfor %}
 
-    {% for user in users %}
-        <div><p>username: {{ user.username }} -- email: {{ user.email }}</p>
-            <a href="{{ url_for('follow',username=user.username) }}" style="">follow</a>
-        </div>
-    {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer Posts</a>
+    {% endif %}
+
+    {% if next_url %}
+    <a href="{{ next_url }}">Older Posts</a>
+    {% endif %}
+
+{#    {% for user in users %}#}
+{#        <div><p>username: {{ user.username }} -- email: {{ user.email }}</p>#}
+{#            <a href="{{ url_for('follow',username=user.username) }}" style="">follow</a>#}
+{#        </div>#}
+{#    {% endfor %}#}
+
 {% endblock %}
