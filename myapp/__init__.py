@@ -10,6 +10,7 @@ from logging.handlers import SMTPHandler
 import logging
 from logging.handlers import RotatingFileHandler
 from flask_mail import Mail
+from flask_bootstrap import Bootstrap
 
 application = Flask(__name__)  # loading application package __name__ = myapp
 # application is a variable which is a instance of Flask application
@@ -19,6 +20,7 @@ migrate = Migrate(application, db)
 login = LoginManager(application)
 login.login_view = 'login'
 mail = Mail(application)
+bootstrap = Bootstrap(application)
 
 if not application.debug:
     if application.config['MAIL_SERVER']:

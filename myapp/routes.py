@@ -1,16 +1,14 @@
 from datetime import datetime
-
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-
 from myapp import application
 from myapp import db
 from myapp.forms import LoginForm, RegistrationForm, EmptyForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from myapp.models import User, Post
 from myapp.email import send_password_reset_email
 
-
+# important
 @application.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -30,8 +28,8 @@ def login():  # view function
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next', 'indexpage')
-        print(url_parse(next_page))
+        next_page = request.args.get('next', 'index')
+        # print(url_parse(next_page))
         if not next_page or url_parse(next_page).netloc != '':  # To determine if the URL is relative or absolute
             next_page = url_for('index')
         flash('login requested for user {}, remember_me={}'.format(form.username.data, form.remember_me.data))
