@@ -189,3 +189,4 @@ TypeError: __init__() missing 1 required positional argument: 'original_username
 2021-02-06 16:44:04,964 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
 2021-02-06 16:45:26,590 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
 2021-02-06 16:52:31,802 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
+2021-02-14 21:09:59,951 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:56]

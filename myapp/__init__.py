@@ -9,6 +9,7 @@ from flask_login import LoginManager
 from logging.handlers import SMTPHandler
 import logging
 from logging.handlers import RotatingFileHandler
+from flask_mail import Mail
 
 application = Flask(__name__)  # loading application package __name__ = myapp
 # application is a variable which is a instance of Flask application
@@ -17,6 +18,7 @@ db = SQLAlchemy(application)  # SQLAlchemy orm - object relational mapper
 migrate = Migrate(application, db)
 login = LoginManager(application)
 login.login_view = 'login'
+mail = Mail(application)
 
 if not application.debug:
     if application.config['MAIL_SERVER']:
@@ -29,7 +31,7 @@ if not application.debug:
         mail_handler = SMTPHandler(
             mailhost=(application.config['MAIL_SERVER'], application.config['MAIL_PORT']),
             fromaddr='no-reply@' + application.config['MAIL_SERVER'],
-            toaddrs=application.config['ADMINS'], subject=application.application_name,
+            toaddrs=application.config['ADMINS'], subject=os.environ.get('application_name'),
             credentials=auth,
             secure=secure
         )
