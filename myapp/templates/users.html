@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {% if users %}
+                {% for user in users %}
+                <p>
+                    email: {{ user.email }} username: {{ user.username }}
+                </p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

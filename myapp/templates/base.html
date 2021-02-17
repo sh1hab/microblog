@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Microblog{% else %}Welcome to Microblog{% endif %}
+    {% if title %}{{ title }} - MicroBlog{% else %}Welcome to MicroBlog{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+                <a class="navbar-brand" href="{{ url_for('index') }}">MicroBlog</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -49,4 +49,9 @@
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
 {% endblock %}

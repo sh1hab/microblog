@@ -101,10 +101,7 @@ def index():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
+    posts = Post.query.filter_by(user_id=user.id)
     form = EmptyForm()
     return render_template('user.html', user=user, posts=posts, form=form)
 
@@ -191,3 +188,9 @@ def reset_password(token):
         flash('Your password has been reset')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+
+@application.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
