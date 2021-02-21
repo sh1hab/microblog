@@ -1,14 +1,113 @@
-2021-02-03 00:31:58,075 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-03 00:32:14,492 ERROR: Exception on /edit_profile [POST] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+2021-02-21 18:46:38,399 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:67]
+2021-02-21 18:46:51,105 ERROR: Exception on /auth/login [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.username
-
-The above exception was the direct cause of the following exception:
-
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/auth/routes.py", line 42, in login
+    return render_template('auth/login.html', title='sign in', form=form)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/auth/login.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/auth/login.html", line 26, in block "app_content"
+    <p>new user? <a href="{{ url_for('registration') }}">Click to register</a></p>
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'registration'. Did you mean 'auth.registration' instead?
+2021-02-21 18:48:04,572 ERROR: Exception on /auth/login [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/auth/routes.py", line 42, in login
+    return render_template('auth/login.html', title='sign in', form=form)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/auth/login.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/auth/login.html", line 26, in block "app_content"
+    <p>new user? <a href="{{ url_for('auth.registration') }}">Click to register</a></p>
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'registration'. Did you mean 'auth.registration' instead?
+2021-02-21 18:48:22,179 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:67]
+2021-02-21 18:50:16,017 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:68]
+2021-02-21 18:54:17,964 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -24,56 +123,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 101, in edit_profile
-    db.session.commit()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
-    self.transaction.commit()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 504, in commit
-    self._prepare_impl()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
-    self.session.flush()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
-    self._flush(objects)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
-    compat.raise_(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2624, in _flush
-    flush_context.execute()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 586, in execute
-    persistence.save_obj(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 230, in save_obj
-    _emit_update_statements(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 994, in _emit_update_statements
-    c = cached_connections[connection].execute(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1127, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
-[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
-[parameters: ('ohn', 'hello there :)', 2)]
-(Background on this error at: http://sqlalche.me/e/13/gkpj)
-2021-02-03 23:05:43,874 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-03 23:06:08,834 ERROR: Exception on /edit_profile [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 164, in explore
+    next_url = url_for('explore', page=posts.next_num) \
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'explore' with values ['page']. Did you mean 'main.explore' instead?
+2021-02-21 18:55:46,336 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:68]
+2021-02-21 18:55:47,023 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -89,12 +153,20 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 97, in edit_profile
-    form = EditProfileForm()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2021-02-03 23:06:14,801 ERROR: Exception on /edit_profile [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 164, in explore
+    next_url = url_for('explore', page=posts.next_num) \
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'explore' with values ['page']. Did you mean 'main.explore' instead?
+2021-02-21 18:55:53,326 ERROR: Exception on /index [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -110,12 +182,48 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 97, in edit_profile
-    form = EditProfileForm()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2021-02-03 23:06:18,816 ERROR: Exception on /edit_profile [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 106, in index
+    return render_template('index.html', title='Home', users=users, posts=posts.items, form=form, next_url=next_url,
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 22, in block "app_content"
+    {% include '_post.html' %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/_post.html", line 4, in top-level template code
+    <a href="{{ url_for('auth.user', username=post.author.username) }}">
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'auth.user' with values ['username']. Did you mean 'main.user' instead?
+2021-02-21 18:56:02,531 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -131,12 +239,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 97, in edit_profile
-    form = EditProfileForm()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2021-02-03 23:06:41,792 ERROR: Exception on /edit_profile [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 164, in explore
+    next_url = url_for('explore', page=posts.next_num) \
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'explore' with values ['page']. Did you mean 'main.explore' instead?
+2021-02-21 18:58:12,210 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:68]
+2021-02-21 18:58:15,019 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -152,12 +269,49 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 97, in edit_profile
-    form = EditProfileForm()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2021-02-03 23:06:49,226 ERROR: Exception on /edit_profile [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 168, in explore
+    return render_template('index.html', title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 22, in block "app_content"
+    {% include '_post.html' %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/_post.html", line 4, in top-level template code
+    <a href="{{ url_for('auth.user', username=post.author.username) }}">
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'auth.user' with values ['username']. Did you mean 'main.user' instead?
+2021-02-21 18:59:19,216 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:68]
+2021-02-21 22:19:06,168 ERROR: Exception on /user/kunefydo [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -173,20 +327,176 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Volumes/Space/Programming/microBlogFlask/myapp/routes.py", line 97, in edit_profile
-    form = EditProfileForm()
-  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2021-02-06 16:28:33,393 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:29:29,376 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:34:43,069 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:35:48,266 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:36:12,005 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:42:43,506 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:43:16,050 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:43:33,774 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:44:04,964 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:45:26,590 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-06 16:52:31,802 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:47]
-2021-02-14 21:09:59,951 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:56]
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 116, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/user.html", line 9, in block "app_content"
+    <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'edit_profile'. Did you mean 'main.edit_profile' instead?
+2021-02-21 22:19:58,615 ERROR: Exception on /user/kunefydo [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 116, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 51, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/user.html", line 9, in block "app_content"
+    <p><a href="{{ url_for('main.edit_profile') }}">Edit your profile</a></p>
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'edit_profile'. Did you mean 'main.edit_profile' instead?
+2021-02-21 22:52:05,913 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
+2021-02-21 22:52:33,560 ERROR: Exception on /index [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 100, in index
+    posts = current_user.followed_posts().paginate(page, application.config['POSTS_PER_PAGE'], False)
+NameError: name 'application' is not defined
+2021-02-21 22:57:38,124 ERROR: Exception on /index [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 100, in index
+    posts = current_user.followed_posts().paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+NameError: name 'application' is not defined
+2021-02-21 22:58:01,249 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
+2021-02-21 22:58:15,080 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 163, in explore
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(page, application.config['POSTS_PER_PAGE'], False)
+NameError: name 'application' is not defined
+2021-02-21 23:15:44,397 ERROR: Exception on /explore [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 163, in explore
+NameError: name 'application' is not defined
+2021-02-21 23:16:13,136 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
+2021-02-21 23:50:43,231 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]

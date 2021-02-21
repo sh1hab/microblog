@@ -1,6 +1,11 @@
 # like index.php file
-from myapp import application, db
+from flask import current_app
+from myapp import db, create_app, cli
 from myapp.models import User, Post, UserDetails
+from myapp import cli
+
+application = create_app()
+cli.register(application)
 
 
 @application.shell_context_processor

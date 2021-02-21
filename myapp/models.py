@@ -5,7 +5,8 @@ from myapp import login
 from hashlib import md5
 from flask_login import UserMixin
 import jwt
-from myapp import application
+from flask import current_app
+# from myapp import application
 from time import time
 
 followers = db.Table('followers',
@@ -83,7 +84,7 @@ class User(UserMixin, db.Model):
                 'reset_password': self.id,
                 'exp': time() + expires_in
             },
-            application.config['SECRET_KEY'],
+            current_app.config['SECRET_KEY'],
             algorithm='HS256'
         )
 
@@ -91,7 +92,7 @@ class User(UserMixin, db.Model):
     def verify_reset_password(token):
         try:
             # decode jwt token
-            user_id = jwt.decode(token, application.config['SECRET_KEY'], algorithm='HS256')['reset_password']
+            user_id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithm='HS256')['reset_password']
         except:
             return
         return User.query.get(user_id)
@@ -102,6 +103,7 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # ForeignKey
+    language = db.Column(db.String(5), default='')
 
     def __repr__(self):
         return '<Post {}'.format(self.body)

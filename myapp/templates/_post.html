@@ -1,17 +1,32 @@
 <table class="table table-hover">
     <tr>
-        <td width="70px" >
-            <a href="{{ url_for('user', username=post.author.username) }}">
+        <td width="70px">
+            <a href="{{ url_for('main.user', username=post.author.username) }}">
                 <img src="{{ post.author.avatar(64) }}" alt="image">
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=post.author.username) }}">
+            <span class="label label-primary">&nbsp;
+                 <a href="{{ url_for('main.user', username=post.author.username) }}">
                 {{ post.author.username }}
             </a>
-             said {{ moment(post.timestamp).fromNow() }}:
+            </span>
+
+            said {{ moment(post.timestamp).fromNow() }}:
             <br>
-            {{ post.body }}
+            <span id="post{{ post.id }}">{{ post.body }}</span>
         </td>
+        {% if post.language and post.language != g.locale %}
+            <td>
+                <br><br>
+                <span id="translation{{ post.id }}">
+                <a href="javascript:translate('#post{{ post.id }}',
+                                '#translation{{ post.id }}',
+                                '{{ post.language }}',
+                                '{{ g.locale }}');">{{ _('Translate') }}</a>
+                </span>
+            </td>
+
+        {% endif %}
     </tr>
 </table>

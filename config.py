@@ -1,7 +1,9 @@
 import os
+from dotenv import load_dotenv
 
 # getting application folder name
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 
 class Config(object):
@@ -19,3 +21,4 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['shihab991@gmail.com']
     POSTS_PER_PAGE = 3
+    LANGUAGES = ['en', 'ja']

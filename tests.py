@@ -1,19 +1,29 @@
 import unittest
-from myapp import application, db
+from myapp import db, create_app
 from myapp.models import User, Post
 from datetime import datetime, timedelta
+from config import Config
+
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 
 class UserModelCase(unittest.TestCase):
     def setUp(self) -> None:
+        self.application = create_app(TestConfig)
+        self.app_context = self.application.app_context()
+        self.app_context.push()
         # in memory database load
-        application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+        # application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
         # creates all tables
         db.create_all()
 
     def tearDown(self) -> None:
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
     def test_password_hashing(self):
         u = User(username='susan')
