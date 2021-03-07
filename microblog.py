@@ -4,6 +4,7 @@ from myapp import db, create_app, cli
 from myapp.models import User, Post, UserDetails
 from myapp import cli
 
+# create app
 application = create_app()
 cli.register(application)
 

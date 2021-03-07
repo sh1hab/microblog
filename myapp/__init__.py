@@ -14,6 +14,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
+from elasticsearch import Elasticsearch
 
 # application = Flask(__name__)
 # application is a variable which is a instance of Flask application
@@ -30,6 +31,7 @@ moment = Moment()
 babel = Babel()
 
 
+# factory
 def create_app(config_class=Config):
     # loading application package __name__ = myapp
     # application is a variable which is a instance of Flask application
@@ -54,6 +56,10 @@ def create_app(config_class=Config):
     from myapp.main import bp as main_bp
     application.register_blueprint(main_bp)
 
+    # loading elasticSearch
+    application.elasticsearch = Elasticsearch([application.config['ELASTICSEARCH_URL']]) \
+        if application.config['ELASTICSEARCH_URL'] else None
+
     if not application.debug and not application.testing:
         if application.config['MAIL_SERVER']:
             auth = None
@@ -71,7 +77,7 @@ def create_app(config_class=Config):
             )
             mail_handler.setLevel(logging.ERROR)
             application.logger.addHandler(mail_handler)
-
+        # if logs folder doesn't exist create logs
         if not os.path.exists('logs'):
             os.mkdir('logs')
         file_handler = RotatingFileHandler('logs/microBlog.log', maxBytes=102400, backupCount=10)

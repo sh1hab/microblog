@@ -500,3 +500,207 @@ Traceback (most recent call last):
 NameError: name 'application' is not defined
 2021-02-21 23:16:13,136 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
 2021-02-21 23:50:43,231 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
+2021-03-02 23:14:55,591 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:83]
+2021-03-05 11:15:53,631 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-05 12:08:07,210 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-05 12:10:31,139 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-05 12:13:21,015 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-06 13:43:01,786 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-06 13:48:34,062 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-06 13:52:16,074 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-06 13:55:09,965 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-07 00:47:12,128 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-07 00:47:21,479 ERROR: Exception on / [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 63, in index
+    return render_template('index.html', title='Home', users=users, posts=posts.items, form=form, next_url=next_url,
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 27, in block "navbar"
+    action="{{ url_for('main.search') }}">
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.search'. Did you mean 'main.user' instead?
+2021-03-07 00:49:12,283 ERROR: Exception on / [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 63, in index
+    return render_template('index.html', title='Home', users=users, posts=posts.items, form=form, next_url=next_url,
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/templates/base.html", line 27, in block "navbar"
+    action="{{ url_for('main.search') }}">
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.search'. Did you mean 'main.user' instead?
+2021-03-07 00:49:49,091 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-07 01:00:57,303 ERROR: Exception on /search [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2021-03-07 22:32:42,856 INFO: microBlog startup [in /Volumes/Space/Programming/microBlogFlask/myapp/__init__.py:89]
+2021-03-07 22:34:15,308 ERROR: Exception on /search [GET] [in /Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/connection/http_urllib3.py", line 249, in perform_request
+    response = self.pool.urlopen(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 724, in urlopen
+    retries = retries.increment(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/util/retry.py", line 379, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/http/client.py", line 1240, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/http/client.py", line 1286, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/http/client.py", line 1235, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/http/client.py", line 1006, in _send_output
+    self.send(msg)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/http/client.py", line 946, in send
+    self.connect()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x114bbe190>: Failed to establish a new connection: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/main/routes.py", line 150, in search
+    posts, total = Post.search(g.search_form.q.data, page, per_page=10)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/models.py", line 24, in search
+    ids, total = query_index(cls.__tablename__, expression, page, per_page)
+  File "/Volumes/Space/Programming/microBlogFlask/myapp/search.py", line 23, in query_index
+    search = current_app.elasticsearch.search(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/client/utils.py", line 152, in _wrapped
+    return func(*args, params=params, headers=headers, **kwargs)
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/client/__init__.py", line 1657, in search
+    return self.transport.perform_request(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/transport.py", line 413, in perform_request
+    raise e
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/transport.py", line 381, in perform_request
+    status, headers_response, data = connection.perform_request(
+  File "/Users/shihab/opt/anaconda3/lib/python3.8/site-packages/elasticsearch/connection/http_urllib3.py", line 262, in perform_request
+    raise ConnectionError("N/A", str(e), e)
+elasticsearch.exceptions.ConnectionError: ConnectionError(<urllib3.connection.HTTPConnection object at 0x114bbe190>: Failed to establish a new connection: [Errno 61] Connection refused) caused by: NewConnectionError(<urllib3.connection.HTTPConnection object at 0x114bbe190>: Failed to establish a new connection: [Errno 61] Connection refused)

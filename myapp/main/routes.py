@@ -10,7 +10,7 @@ from guess_language import guess_language
 # from myapp import application
 from myapp import db
 from myapp.main import bp as main_bp
-from myapp.main.forms import EmptyForm, EditProfileForm, PostForm
+from myapp.main.forms import EmptyForm, EditProfileForm, PostForm, SearchForm
 from myapp.models import User, Post
 from myapp.translate import translate
 
@@ -21,6 +21,8 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        # g is a private container provided by flask
+        g.search_form = SearchForm()
         g.locale = str(get_locale())
 
 
@@ -29,7 +31,7 @@ def before_request():
 @login_required
 def index():
     # user = {'username': 'shihab'}
-    form = PostForm()
+    form: PostForm = PostForm()
     if form.validate_on_submit():
         language = guess_language(form.post.data)
         if language == 'UNKNOWN' or len(language) > 5:
@@ -137,3 +139,17 @@ def translate_text():
                           request.form['source_language'],
                           request.form['dest_language'])
     })
+
+
+@main_bp.route('/search', methods=['GET'])
+@login_required
+def search():
+    if g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(g.search_form.q.data, page, per_page=10)
+    next_url = url_for('main.search', q=g.search_form.q.data, page=page + 1) \
+        if total > page * 10 else None
+    prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
+        if total > page * 10 else None
+    return render_template('search.html', title='Search', posts=posts, next_url=next_url, prev_url=prev_url, total=total)
