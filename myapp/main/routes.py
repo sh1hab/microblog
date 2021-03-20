@@ -152,4 +152,14 @@ def search():
         if total > page * 10 else None
     prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
         if total > page * 10 else None
-    return render_template('search.html', title='Search', posts=posts, next_url=next_url, prev_url=prev_url, total=total)
+    return render_template('search.html', title='Search', posts=posts, next_url=next_url, prev_url=prev_url,
+                           total=total)
+
+
+# user profile popup
+@main_bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    userdata = User.query.filter_by(username=username).first_or_404()
+    form = EmptyForm()
+    return render_template('user_popup.html', user=userdata, form=form)

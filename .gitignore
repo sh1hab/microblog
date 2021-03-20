@@ -3,3 +3,7 @@ myapp/__pychache__
 /venv
 .flaskenv
 .idea
+
+/.vagrant/
+/logs/
+app.db

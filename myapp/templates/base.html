@@ -22,22 +22,23 @@
                     <li><a href="{{ url_for('main.index') }}">{{ ('Home') }}</a></li>
                     <li><a href="{{ url_for('main.explore') }}">{{ ('Explore') }}</a></li>
                 </ul>
-                 {% if g.search_form %}
+                {% if g.search_form %}
                     <form class="navbar-form navbar-left" method="get"
-                            action="{{ url_for('main.search') }}">
+                          action="{{ url_for('main.search') }}">
                         <div class="form-group">
                             {{ g.search_form.q(size=20, class='form-control',
                                 placeholder=g.search_form.q.label.text) }}
                         </div>
                     </form>
-                 {% endif %}
+                {% endif %}
 
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
                         <li><a href="{{ url_for('auth.login') }}">{{ ('Login') }}</a></li>
                     {% else %}
 
-                        <li><a href="{{ url_for('main.user', username=current_user.username) }}">{{ ('Profile') }}</a></li>
+                        <li><a href="{{ url_for('main.user', username=current_user.username) }}">{{ ('Profile') }}</a>
+                        </li>
                         <li><a href="{{ url_for('auth.logout') }}">{{ ('Logout') }}</a></li>
                     {% endif %}
                 </ul>
@@ -65,13 +66,13 @@
     {{ moment.include_moment() }}
     <script type="application/javascript">
         function translate(sourceElem, destElem, sourceLang, destLang) {
-             $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+            $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
             data = {
                 "input": $(sourceElem).text(),
                 "lang": destLang
             }
-             $.post({
-                 "async": true,
+            $.post({
+                "async": true,
                 "crossDomain": true,
                 "url": "https://kiara-translate.p.rapidapi.com/get_translated/",
                 "method": "POST",
@@ -81,13 +82,54 @@
                     "x-rapidapi-host": "kiara-translate.p.rapidapi.com"
                 },
                 "processData": false,
-                "data": "{\"input\": \""+$(sourceElem).text()+"\",\"lang\": \""+destLang+"\"}"
-            }).done(function(response) {
+                "data": "{\"input\": \"" + $(sourceElem).text() + "\",\"lang\": \"" + destLang + "\"}"
+            }).done(function (response) {
                 $(destElem).text(response['translated'])
-            }).fail(function() {
+            }).fail(function () {
                 $(destElem).text("{{ _('Error: Could not contact server.') }}");
             });
-
         }
+
+        $(function () {
+            var timer = null;
+            var xhr = null;
+            $('.user_popup').hover(
+                function (event) {
+                    var elem = $(event.currentTarget);
+                    timer = setTimeout(function () {
+                        timer = null;
+                        {# xhr returns a promise #}
+                        xhr = $.ajax('/user/' + elem.first().text().trim() + '/popup').done(
+                            function (data) {
+                                xhr = null;
+                                {#show popover#}
+                                elem.popover({
+                                    trigger: 'manual',
+                                    html: true,
+                                    animation: false,
+                                    container: elem,
+                                    content: data
+                                }).popover('show');
+                                flask_moment_render_all();
+                            }
+                        )
+                    });
+                },
+                function (event) {
+                    // mouse out event handler
+                    var elem = $(event.currentTarget);
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    } else if (xhr) {
+                        xhr.abort();
+                        xhr = null;
+                    } else {
+                        elem.popover('destroy');
+                    }
+                }
+            );
+        })
+
     </script>
 {% endblock %}

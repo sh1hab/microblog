@@ -6,13 +6,16 @@
             </a>
         </td>
         <td>
-            <span class="label">&nbsp;
-                 <a href="{{ url_for('main.user', username=post.author.username) }}">
-                {{ post.author.username }}
-            </a>
-            </span>
+            {% set user_link %}
+            <span class="user_popup">
+                        <a href="{{ url_for('main.user', username=post.author.username) }}">
+                            {{ post.author.username }}
+                        </a>
+                    </span>
+            {% endset %}
 
-            said {{ moment(post.timestamp).fromNow() }}:
+            {{ _('%(username)s said %(when)s',
+                    username=user_link, when=moment(post.timestamp).fromNow()) }}
             <br>
             <span id="post{{ post.id }}">{{ post.body }}</span>
         </td>
