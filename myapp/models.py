@@ -1,3 +1,4 @@
+import json
 from typing import List, Any, Tuple
 from myapp import db
 from datetime import datetime
@@ -69,10 +70,10 @@ class User(UserMixin, db.Model):
     # 2nd arg = will be added to posts class object,
     # 3rd arg = lazy argument defines how the database query for the relationship will be issued
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    # lazy=dynamic argument returns a query instead of the final results
     userDetails = db.relationship('UserDetails', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow())
-    # lazy=dynamic argument returns a query instead of the final results
     followed = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
@@ -80,6 +81,14 @@ class User(UserMixin, db.Model):
         backref=db.backref('followers', lazy='dynamic'),
         lazy='dynamic'
     )
+    # this model has two identical foreign keys. SQLAlchemy has no way to know which one is for sent or received
+    # messages, so we have to provide that detail
+    messages_sent = db.relationship('Message', foreign_keys='Message.sender_id', backref='author', lazy='dynamic')
+    messages_received = db.relationship('Message', foreign_keys='Message.recipient_id', backref='recipient',
+                                        lazy='dynamic')
+    last_message_read_time = db.Column(db.DateTime)
+
+    notifications = db.relationship('Notification', backref='user', lazy='dynamic')
 
     # debugging purpose
     def __repr__(self):
@@ -142,8 +151,20 @@ class User(UserMixin, db.Model):
             return
         return User.query.get(user_id)
 
+    # helper method
+    def new_messages(self):
+        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+        return Message.query.filter_by(recipient=self).filter(Message.timestamp > last_read_time).count()
+
+    def add_notification(self, name, data):
+        self.notifications.filter_by(name=name).delete()
+        n = Notification(name=name, payload_json=json.dumps(data), user=self)
+        db.session.add(n)
+        return n
+
 
 class Post(SearchableMixin, db.Model):
+    # for Elasticsearch
     __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
@@ -164,9 +185,32 @@ class UserDetails(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+
+    # for command line
+    def __repr__(self):
+        return '<Message {}>'.format(self.body)
+
+
 @login.user_loader
 def load_user(user_id):
     return User.query.get((int(user_id)))
+
+
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.Float, index=True, default=time)
+    payload_json = db.Column(db.Text)
+
+    def get_data(self):
+        return json.loads(str(self.payload_json))
 
 
 # listening to event sqlalchemy db event

@@ -74,6 +74,7 @@ class ResetPasswordForm(FlaskForm):
     submit = SubmitField('Change Password')
 
 
+# elastic search form
 class SearchForm(FlaskForm):
     q = StringField(_l('Search'), validators=[DataRequired()])
 
@@ -85,3 +86,11 @@ class SearchForm(FlaskForm):
             pass
         # ?
         super(SearchForm, self).__init__(*args, **kwargs)
+
+
+# message send form
+class MessageForm(FlaskForm):
+    message = TextAreaField(_l('Message'), validators=[
+        DataRequired(), Length(min=0, max=140)
+    ])
+    submit = SubmitField(_l('Submit'))

@@ -36,7 +36,18 @@
                     {% if current_user.is_anonymous %}
                         <li><a href="{{ url_for('auth.login') }}">{{ ('Login') }}</a></li>
                     {% else %}
-
+                        <li>
+                            <a href="{{ url_for('main.messages') }}">
+                                {{ _('Messages') }}
+                                {% set new_messages = current_user.new_messages() %}
+                                {% if new_messages %}
+                                    <span id="message_count" class="badge"
+                                          style="visibility: {% if new_messages %} visible {% else %} hidden }}{% endif %}">
+                                        {{ new_messages }}
+                                </span>
+                                {% endif %}
+                            </a>
+                        </li>
                         <li><a href="{{ url_for('main.user', username=current_user.username) }}">{{ ('Profile') }}</a>
                         </li>
                         <li><a href="{{ url_for('auth.logout') }}">{{ ('Logout') }}</a></li>
@@ -61,7 +72,9 @@
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
 {% block scripts %}
+    {# include scripts of   #}
     {{ super() }}
     {{ moment.include_moment() }}
     <script type="application/javascript">
@@ -91,11 +104,11 @@
         }
 
         $(function () {
-            var timer = null;
-            var xhr = null;
+            let timer = null;
+            let xhr = null;
             $('.user_popup').hover(
                 function (event) {
-                    var elem = $(event.currentTarget);
+                    const elem = $(event.currentTarget);
                     timer = setTimeout(function () {
                         timer = null;
                         {# xhr returns a promise #}
@@ -117,7 +130,7 @@
                 },
                 function (event) {
                     // mouse out event handler
-                    var elem = $(event.currentTarget);
+                    const elem = $(event.currentTarget);
                     if (timer) {
                         clearTimeout(timer);
                         timer = null;
@@ -130,6 +143,27 @@
                 }
             );
         })
+
+        function set_message_count(n) {
+            $('#message_count').text(n).css('visibility', n ? 'visible' : 'hidden');
+        }
+
+        {% if current_user.is_authenticated %}
+            $(function () {
+                let since = 0;
+                setInterval(function () {
+                    $.ajax('{{ url_for('main.notifications') }}?since=' + since).done(
+                        function (notifications) {
+                            for (let i = 0; i < notifications.length; i++) {
+                                if (notifications[i].name === 'unread_message_count')
+                                    set_message_count(notifications[i].data);
+                                since = notifications[i].timestamp;
+                            }
+                        }
+                    );
+                }, 10000);
+            });
+        {% endif %}
 
     </script>
 {% endblock %}
