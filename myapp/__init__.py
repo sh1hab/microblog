@@ -1,20 +1,23 @@
 # from filename import Classname
-import os
-
-from flask import Flask  # loads flask
-from config import Config  # loads configuration
-from flask_sqlalchemy import SQLAlchemy  # manages sql
-from flask_migrate import Migrate  # manages migrate
-from flask_login import LoginManager  # manages login
-from logging.handlers import SMTPHandler
 import logging
+import os
 from logging.handlers import RotatingFileHandler
-from flask_mail import Mail
-from flask_bootstrap import Bootstrap
-from flask_moment import Moment
+from logging.handlers import SMTPHandler
+
+from elasticsearch import Elasticsearch
+from flask import Flask  # loads flask
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
-from elasticsearch import Elasticsearch
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager  # manages login
+from flask_mail import Mail
+from flask_migrate import Migrate  # manages migrate
+from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy  # manages sql
+
+from config import Config  # loads configuration
+from redis import Redis
+import rq
 
 # application = Flask(__name__)
 # application is a variable which is a instance of Flask application
@@ -59,6 +62,10 @@ def create_app(config_class=Config):
     # loading elasticSearch
     application.elasticsearch = Elasticsearch([application.config['ELASTICSEARCH_URL']]) \
         if application.config['ELASTICSEARCH_URL'] else None
+    # loading redis
+    application.redis = Redis.from_url(application.config['REDIS_URL'])
+    # queue where tasks are submitted
+    application.task_queue = rq.Queue('microblog-tasks', connection=application.redis)
 
     if not application.debug and not application.testing:
         if application.config['MAIL_SERVER']:

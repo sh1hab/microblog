@@ -9,7 +9,7 @@ def send_async_email(application, msg):
         mail.send(msg)
 
 
-def send_email(subject, sender, recipients, text_body, html_body) -> object:
+def send_email(subject, sender, recipients, text_body, html_body, attachments=None, sync=False) -> object:
     """
 
     :rtype: object
@@ -17,8 +17,16 @@ def send_email(subject, sender, recipients, text_body, html_body) -> object:
     msg = Message(subject, sender=sender, recipients=recipients)
     msg.body = text_body
     msg.html = html_body
-    # mail.send(msg)
-    Thread(target=send_async_email, args=(current_app._get_current_object(), msg)).start()  # background thread
+
+    if attachments:
+        for attachment in attachments:
+            # func(*args) = func()
+            msg.attach(*attachment)
+
+    if sync:
+        mail.send(msg)
+    else:
+        Thread(target=send_async_email, args=(current_app._get_current_object(), msg)).start()  # background thread
 
 
 def send_password_reset_email(user) -> object:
